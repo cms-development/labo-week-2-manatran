@@ -7,6 +7,5 @@
   <title>Helo world</title>
   <?php wp_head(); ?>
 </head>
-
 <body>
   <header>hello header</header>  

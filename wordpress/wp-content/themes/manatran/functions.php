@@ -100,56 +100,53 @@ add_action('init', 'manatran_register_recipes');
 
 
 # custom fields toevoegen
-function custom_fields_recipe() {
-  $screens = array('recipe');
+function manatran_add_recipe_box() {
+  $screens = array('recipes');
+  foreach($screens as $screen) {
+      add_meta_box(
+          'recipe_box',
+          __('Our Custom Recipe Fields', 'manatran'),
+          'manatran_recipe_box_callback',
+          $screen
+      );
+  }
+}
+function manatran_recipe_box_callback($post) {
+  wp_nonce_field('recipe_save_meta_box_data', 'recipe_meta_box_nonce');
 
-  foreach( $screens as $screen ){
-    add_meta_box(
-      'recipe_box',
-      __('Our custom recipe fields', 'manatran'),
-      'recipe_meta_box_callback',
-      $screen
-    );
+  $subtitle = get_post_meta($post->ID,'_recipe_subtitle', true);
+  echo '<label for="recipe_subtitle">'. __('Subtitle', 'manatran') .'</label>';
+  echo '<input style="width:100%; margin:0" type="text" id="recipe_subtitle" name="recipe_subtitle" size="255" value="'. $subtitle .'">';
+
+  $ingredients = get_post_meta($post->ID,'_recipe_ingredients', true);
+  echo '<label for="recipe_ingredients">'. __('Ingredients', 'manatran') .'</label>';
+  echo '<input style="width:100%; margin:0" type="text" id="recipe_ingredients" name="recipe_ingredients" size="255" value="'. $ingredients .'">';
+}
+function manatran_save_recipe_data($postid) {
+  if(! isset($_POST['recipe_meta_box_nonce'])) {
+    return;
+  }
+  if(! wp_verify_nonce($_POST['recipe_meta_box_nonce'], 'recipe_save_meta_box_data')) {
+   return;
+  }
+  if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+    return;
+  }
+  if(! current_user_can('edit_post', $post_id)) {
+    return;
+  }
+  if( isset($_POST['recipe_subtitle'])) {
+    $subtitle = sanitize_text_field($_POST['recipe_subtitle']);
+    update_post_meta($postid, '_recipe_subtitle', $subtitle);
+  }
+  if( isset($_POST['recipe_ingredients'])) {
+    $ingredients = sanitize_text_field($_POST['recipe_ingredients']);
+    update_post_meta($postid, '_recipe_ingredients', $ingredients);
   }
 }
 
-function recipe_meta_box_callback($post){
-  // nonce field for security
-  wp_nonce_field('recipe_save_meta_box_data', 'recipe_meta_box_nonce');
-
-  $subtitle = get_post_meta($post->ID, '_recipe_subtitle', true);
-
-  echo('<label for="recipe_subtitle">' . __('Subtitle', 'manatran') . '</label>');
-  echo('<input style="width:100%;margin:0;" type="text" size="255" name="recipe_subtitle" value="'. $subtitle .'">');
-
-  $ingredients = get_post_meta($post->ID, '_recipe_ingredients', true);
-
-  echo('<label for="recipe_ingredients">' . __('Ingredients', 'manatran') . '</label>');
-  echo('<input style="width:100%;margin:0;" type="text" size="255" name="recipe_ingredients" value="'. $ingredients .'">');
-}
-
-add_action('add_meta_box', 'custom_fields_recipe');
-
-function save_recipe($postid){
-  # return false for security
-  if( ! isset( $_POST['recipe_meta_box_nonce']) ){ return; }
-  if( ! wp_verify_nonce( $_POST['recipe_meta_box_nonce'], 'recipe_save_meta_box_data' )){ return; }
-  if( defined('DOING_autosave') && DOING_AUTOSAVE ){ return; }
-
-  # check if user is authorized
-  if( ! current_user_can('edit_post', $post_id) ){ return; }
-  # check post value
-  if( ( ! isset($POST['recipe_subtitle'] ) && ( ! isset($POST['recipe_ingredients'])) ) ){ return; }
-
-  # custom data uit post halen
-  $subtitle = sanitize_text_field($POST['recipe_subtitle']);
-  $ingredients = sanitize_text_field($POST['recipe_ingredients']);
-  # post meta updaten
-  update_post_meta($postid, '_recipe_subtitle', $subtitle);
-  update_post_meta($postid, '_recipe_ingredients', $ingredients);
-}
-
-add_action('save_post', 'save_recipe');
+add_action('add_meta_boxes', 'manatran_add_recipe_box');
+add_action('save_post', 'manatran_save_recipe_data');
 
 
 

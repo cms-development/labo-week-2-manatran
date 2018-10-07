@@ -17467,3 +17467,11 @@ Stack trace:
 [05-Oct-2018 16:12:40 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'cmsdev-user'@'localhost' (using password: YES) in C:\Users\manau\code\cmsdev\labo-1\wordpress\wp-includes\wp-db.php on line 1531
 [05-Oct-2018 16:13:52 UTC] PHP Warning:  mysqli_real_connect(): PHP was built without openssl extension, can't send password encrypted in C:\Users\manau\code\cmsdev\labo-1\wordpress\wp-includes\wp-db.php on line 1531
 [05-Oct-2018 16:13:52 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'cmsdev-user'@'localhost' (using password: YES) in C:\Users\manau\code\cmsdev\labo-1\wordpress\wp-includes\wp-db.php on line 1531
+[07-Oct-2018 15:50:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_rekt() in C:\Users\manau\code\cmsdev\labo-2\wordpress\wp-content\themes\manatran\archive.php:12
+Stack trace:
+#0 C:\Users\manau\code\cmsdev\labo-2\wordpress\wp-includes\template-loader.php(74): include()
+#1 C:\Users\manau\code\cmsdev\labo-2\wordpress\wp-blog-header.php(19): require_once('C:\\Users\\manau\\...')
+#2 C:\Users\manau\code\cmsdev\labo-2\wordpress\index.php(17): require('C:\\Users\\manau\\...')
+#3 C:\Users\manau\dotfiles\scripts\php\router.php(22): require('C:\\Users\\manau\\...')
+#4 {main}
+  thrown in C:\Users\manau\code\cmsdev\labo-2\wordpress\wp-content\themes\manatran\archive.php on line 12
