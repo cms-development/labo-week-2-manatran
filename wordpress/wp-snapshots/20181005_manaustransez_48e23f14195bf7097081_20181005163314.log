@@ -1,0 +1,79 @@
+********************************************************************************
+DUPLICATOR-LITE PACKAGE-LOG: 5 October 2018 16:33
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	1.2.48
+WORDPRESS:	4.9.8
+PHP INFO:	7.2.10 | SAPI: cli-server
+SERVER:		PHP 7.2.10 Development Server 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 2048M (256M default) 
+MEMORY STACK: 10MB 
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   PHP(query limit - 100)
+MYSQLTIMEOUT: 5000
+MYSQLDUMP:    Not Supported 
+TABLES: total:13 | filtered:0 | create:13 
+FILTERED: [] 
+SQL CREATED: 20181005_manaustransez_48e23f14195bf7097081_20181005163314_database.sql 
+SQL FILE SIZE: 202.89KB (207757) 
+SQL FILE TIME: 2018-10-05 16:33:57 
+SQL RUNTIME: 0.40 sec. 
+
+******************************************************************************** 
+ARCHIVE (ZIP): 
+******************************************************************************** 
+ARCHIVE DIR:  C:/Users/manau/code/cmsdev/labo-1/wordpress 
+ARCHIVE FILE: 20181005_manaustransez_48e23f14195bf7097081_20181005163314_archive.zip 
+FILTERS: *OFF* 
+DIRS:
+	not set 
+FILES:
+	not set 
+EXTS:  not set 
+---------------------------------------- 
+COMPRESSING 
+SIZE:	36.34MB 
+STATS:	Dirs 225 | Files 1,811 
+SQL ADDED: 20181005_manaustransez_48e23f14195bf7097081_20181005163314_database.sql 
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 2036
+    [filename] => C:\Users\manau\code\cmsdev\labo-1\wordpress\wp-snapshots\tmp\20181005_manaustransez_48e23f14195bf7097081_20181005163314_archive.zip
+    [comment] => 
+)
+ 
+COMPRESSION RESULT: '1' 
+COMPRESSED SIZE: 12.01MB 
+ARCHIVE RUNTIME: 36.77 sec. 
+MEMORY STACK: 10MB 
+
+******************************************************************************** 
+MAKE INSTALLER: 
+******************************************************************************** 
+Build Start 
+Build Finished 
+Preparing for use 
+PACK SIZE:  
+Template parsed with new data 
+Complete [C:/Users/manau/code/cmsdev/labo-1/wordpress/wp-snapshots/tmp/20181005_manaustransez_48e23f14195bf7097081_20181005163314_installer.php] 
+Added to archive 
+
+******************************************************************************** 
+INTEGRITY CHECKS: 
+******************************************************************************** 
+SQL File: 202.89KB 
+Installer File: 474.15KB 
+Archive File: 12.01MB  
+
+********************************************************************************
+RECORD ID:[1]
+TOTAL PROCESS RUNTIME: 44.86 sec.
+PEAK PHP MEMORY USED: 12MB
+DONE PROCESSING => 20181005_manaustransez 5 October 2018 16:34
+ 
