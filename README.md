@@ -1,2 +1,2 @@
-# Labo 1 CMS Development
+# Labo 2 CMS Development
 ### Manaus Transez
