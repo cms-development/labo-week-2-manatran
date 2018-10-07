@@ -99,7 +99,7 @@ add_action('init', 'manatran_register_recipes');
 
 
 
-# custom fields
+# custom fields toevoegen
 function custom_fields_recipe() {
   $screens = array('recipe');
 
@@ -121,28 +121,35 @@ function recipe_meta_box_callback($post){
 
   echo('<label for="recipe_subtitle">' . __('Subtitle', 'manatran') . '</label>');
   echo('<input style="width:100%;margin:0;" type="text" size="255" name="recipe_subtitle" value="'. $subtitle .'">');
+
+  $ingredients = get_post_meta($post->ID, '_recipe_ingredients', true);
+
+  echo('<label for="recipe_ingredients">' . __('Ingredients', 'manatran') . '</label>');
+  echo('<input style="width:100%;margin:0;" type="text" size="255" name="recipe_ingredients" value="'. $ingredients .'">');
 }
 
 add_action('add_meta_box', 'custom_fields_recipe');
 
 function save_recipe($postid){
   # return false for security
-  if( ! isset( $_POST['recipe_meta_box_nonce']) ){ die('test123'); return; }
+  if( ! isset( $_POST['recipe_meta_box_nonce']) ){ return; }
   if( ! wp_verify_nonce( $_POST['recipe_meta_box_nonce'], 'recipe_save_meta_box_data' )){ return; }
   if( defined('DOING_autosave') && DOING_AUTOSAVE ){ return; }
 
   # check if user is authorized
   if( ! current_user_can('edit_post', $post_id) ){ return; }
   # check post value
-  if( ! isset($POST['recipe_subtitle']) ){ return; }
+  if( ( ! isset($POST['recipe_subtitle'] ) && ( ! isset($POST['recipe_ingredients'])) ) ){ return; }
 
-  # subtitle uit post halen
+  # custom data uit post halen
   $subtitle = sanitize_text_field($POST['recipe_subtitle']);
+  $ingredients = sanitize_text_field($POST['recipe_ingredients']);
   # post meta updaten
   update_post_meta($postid, '_recipe_subtitle', $subtitle);
+  update_post_meta($postid, '_recipe_ingredients', $ingredients);
 }
 
-//add_action('save_post', 'save_recipe');
+add_action('save_post', 'save_recipe');
 
 
 
